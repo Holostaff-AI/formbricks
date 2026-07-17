@@ -1,0 +1,55 @@
+# Holostaff deployment-rig override for the formbricks target
+# (holostaff-agent documents/prd-test-rig.md P3).
+#
+# Layered ON TOP of docker/docker-compose.yml (the project's own
+# self-host stack) so the rig serves exactly the stack operators run,
+# with two changes: the web app builds from THIS checkout (merged
+# Holostaff PRs are what's under test), and required env gets rig-local
+# throwaway values. Invoked by the rig runner as:
+#
+#   docker compose -f docker/docker-compose.yml -f rig/compose.override.yml \
+#     down -v && up -d --build
+#
+# with RIG_APP_PORT / RIG_PUBLIC_ORIGIN in the environment. Fresh DB
+# every run → the app boots in fresh-instance mode and the rig's
+# simulated user creates the first account via /setup/signup
+# (EMAIL_VERIFICATION_DISABLED=1 is the stack default; no SMTP needed).
+#
+# All values below are rig-local throwaways for an ephemeral test
+# database that never holds real data.
+
+services:
+  formbricks:
+    image: rig-formbricks-web:latest
+    build:
+      context: ..
+      dockerfile: apps/web/Dockerfile
+    ports: !override
+      - '${RIG_APP_PORT:-4180}:3000'
+    environment:
+      WEBAPP_URL: ${RIG_PUBLIC_ORIGIN:-http://localhost:4180}
+      NEXTAUTH_URL: ${RIG_PUBLIC_ORIGIN:-http://localhost:4180}
+      NEXTAUTH_SECRET: rig-local-nextauth-secret-9a1c44e2
+      ENCRYPTION_KEY: rig-local-encryption-key-5b7d99f1
+      CRON_SECRET: rig-local-cron-secret-3c6e88a0
+      CUBEJS_API_SECRET: rig-local-cube-secret-7d2f55b3
+      HUB_API_KEY: rig-local-hub-key-1e9a66c4
+
+  formbricks-migrate:
+    image: rig-formbricks-web:latest
+    environment:
+      WEBAPP_URL: ${RIG_PUBLIC_ORIGIN:-http://localhost:4180}
+      NEXTAUTH_URL: ${RIG_PUBLIC_ORIGIN:-http://localhost:4180}
+      NEXTAUTH_SECRET: rig-local-nextauth-secret-9a1c44e2
+      ENCRYPTION_KEY: rig-local-encryption-key-5b7d99f1
+      CRON_SECRET: rig-local-cron-secret-3c6e88a0
+      CUBEJS_API_SECRET: rig-local-cube-secret-7d2f55b3
+      HUB_API_KEY: rig-local-hub-key-1e9a66c4
+
+  cube:
+    environment:
+      CUBEJS_API_SECRET: rig-local-cube-secret-7d2f55b3
+
+  hub:
+    environment:
+      API_KEY: rig-local-hub-key-1e9a66c4
