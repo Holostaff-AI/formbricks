@@ -1,6 +1,7 @@
 import { Metadata } from "next";
 import React from "react";
 import { NoScriptWarning } from "@/app/components/NoScriptWarning";
+import { HolostaffProvider } from "@/app/holostaff/HolostaffProvider";
 import { SentryProvider } from "@/app/sentry/SentryProvider";
 import {
   DEFAULT_LOCALE,
@@ -34,7 +35,7 @@ const RootLayout = async ({ children }: { children: React.ReactNode }) => {
           sentryEnvironment={SENTRY_ENVIRONMENT}
           isEnabled={IS_PRODUCTION}>
           <I18nProvider language={locale} defaultLanguage={DEFAULT_LOCALE}>
-            {children}
+            <HolostaffProvider>{children}</HolostaffProvider>
           </I18nProvider>
         </SentryProvider>
       </body>
