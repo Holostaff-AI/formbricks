@@ -144,7 +144,9 @@
     "uuid": "14.0.0",
     "xlsx": "file:vendor/xlsx-0.20.3.tgz",
     "zod": "4.3.6",
-    "zod-openapi": "5.4.6"
+    "zod-openapi": "5.4.6",
+    "@holostaff/sdk": "^0.10.2",
+    "livekit-client": ">=2"
   },
   "devDependencies": {
     "@formbricks/config-typescript": "workspace:*",
