@@ -29,27 +29,27 @@ services:
     environment:
       WEBAPP_URL: ${RIG_PUBLIC_ORIGIN:-http://localhost:4180}
       NEXTAUTH_URL: ${RIG_PUBLIC_ORIGIN:-http://localhost:4180}
-      NEXTAUTH_SECRET: rig-local-nextauth-secret-9a1c44e2
-      ENCRYPTION_KEY: rig-local-encryption-key-5b7d99f1
-      CRON_SECRET: rig-local-cron-secret-3c6e88a0
-      CUBEJS_API_SECRET: rig-local-cube-secret-7d2f55b3
-      HUB_API_KEY: rig-local-hub-key-1e9a66c4
+      NEXTAUTH_SECRET: a3f1c2d4e5b6978877665544332211ffeeddccbbaa998877665544332211abcd
+      ENCRYPTION_KEY: b4e2d3c5f6a7089988776655443322110011223344556677889900aabbccddee
+      CRON_SECRET: c5d3e4f607b81a9a99887766554433221122334455667788990011bbccddeeff
+      CUBEJS_API_SECRET: d6e4f50718c92babba99887766554433223344556677889900112233ccddeeff
+      HUB_API_KEY: e7f5061829da3cdccbaa9988776655443344556677889900112233445566ddff
 
   formbricks-migrate:
     image: rig-formbricks-web:latest
     environment:
       WEBAPP_URL: ${RIG_PUBLIC_ORIGIN:-http://localhost:4180}
       NEXTAUTH_URL: ${RIG_PUBLIC_ORIGIN:-http://localhost:4180}
-      NEXTAUTH_SECRET: rig-local-nextauth-secret-9a1c44e2
-      ENCRYPTION_KEY: rig-local-encryption-key-5b7d99f1
-      CRON_SECRET: rig-local-cron-secret-3c6e88a0
-      CUBEJS_API_SECRET: rig-local-cube-secret-7d2f55b3
-      HUB_API_KEY: rig-local-hub-key-1e9a66c4
+      NEXTAUTH_SECRET: a3f1c2d4e5b6978877665544332211ffeeddccbbaa998877665544332211abcd
+      ENCRYPTION_KEY: b4e2d3c5f6a7089988776655443322110011223344556677889900aabbccddee
+      CRON_SECRET: c5d3e4f607b81a9a99887766554433221122334455667788990011bbccddeeff
+      CUBEJS_API_SECRET: d6e4f50718c92babba99887766554433223344556677889900112233ccddeeff
+      HUB_API_KEY: e7f5061829da3cdccbaa9988776655443344556677889900112233445566ddff
 
   cube:
     environment:
-      CUBEJS_API_SECRET: rig-local-cube-secret-7d2f55b3
+      CUBEJS_API_SECRET: d6e4f50718c92babba99887766554433223344556677889900112233ccddeeff
 
   hub:
     environment:
-      API_KEY: rig-local-hub-key-1e9a66c4
+      API_KEY: e7f5061829da3cdccbaa9988776655443344556677889900112233445566ddff
