@@ -1,5 +1,6 @@
 import { Metadata } from "next";
 import React from "react";
+import { HolostaffProvider } from "@/app/holostaff/HolostaffProvider";
 import { NoScriptWarning } from "@/app/components/NoScriptWarning";
 import { SentryProvider } from "@/app/sentry/SentryProvider";
 import {
@@ -28,6 +29,7 @@ const RootLayout = async ({ children }: { children: React.ReactNode }) => {
     <html lang={locale} translate="no">
       <body className="flex h-dvh flex-col transition-all ease-in-out">
         <NoScriptWarning locale={locale} />
+        <HolostaffProvider>
         <SentryProvider
           sentryDsn={SENTRY_DSN}
           sentryRelease={SENTRY_RELEASE}
@@ -37,6 +39,7 @@ const RootLayout = async ({ children }: { children: React.ReactNode }) => {
             {children}
           </I18nProvider>
         </SentryProvider>
+        </HolostaffProvider>
       </body>
     </html>
   );
