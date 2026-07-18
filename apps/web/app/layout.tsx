@@ -1,6 +1,7 @@
 import { Metadata } from "next";
 import React from "react";
 import { NoScriptWarning } from "@/app/components/NoScriptWarning";
+import { HolostaffProvider } from "@/app/components/HolostaffProvider";
 import { SentryProvider } from "@/app/sentry/SentryProvider";
 import {
   DEFAULT_LOCALE,
@@ -27,6 +28,7 @@ const RootLayout = async ({ children }: { children: React.ReactNode }) => {
   return (
     <html lang={locale} translate="no">
       <body className="flex h-dvh flex-col transition-all ease-in-out">
+        <HolostaffProvider />
         <NoScriptWarning locale={locale} />
         <SentryProvider
           sentryDsn={SENTRY_DSN}
