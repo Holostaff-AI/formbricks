@@ -11,6 +11,7 @@ import { getTranslate } from "@/lingodotdev/server";
 import { getAccessControlPermission, getIsMultiOrgEnabled } from "@/modules/ee/license-check/lib/utils";
 import { getOrganizationAuth } from "@/modules/organization/lib/utils";
 import { Header } from "@/modules/ui/components/header";
+import { HolostaffStageMark } from '../../../../../holostaff-stage-mark'
 
 const Page = async (props: { params: Promise<{ organizationId: string }> }) => {
   const params = await props.params;
@@ -76,4 +77,16 @@ const Page = async (props: { params: Promise<{ organizationId: string }> }) => {
   );
 };
 
-export default Page;
+// ── Holostaff instrumentation ──────────────────────────────────
+// Added by the Holostaff deploy agent (Formbricks · deploy v1).
+// Marks the visitor entering the "onboarding" journey stage when
+// this entry page mounts — powers stage-aware copilot monitoring.
+// Safe to relocate; keep one call per entry page. https://docs.holostaff.ai
+export default function HolostaffPage(props: any) {
+  return (
+    <>
+      <HolostaffStageMark stage="onboarding" /> {/* entry page for "Workspace & First Survey Onboarding" */}
+      <Page {...props} />
+    </>
+  )
+}
