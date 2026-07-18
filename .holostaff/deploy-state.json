@@ -1,0 +1,21 @@
+{
+  "holostaff": {
+    "version": 1,
+    "sourceId": "ks_mrpjsskb_z9cqrl",
+    "sourceName": "Formbricks",
+    "artifactVersion": 1,
+    "editsKey": "e953abe22f431237b91031b71293585cfdad9dc8",
+    "stageCopilots": {
+      "awareness": null,
+      "education": null,
+      "selection": null,
+      "mutual_commit": "rig-formbricks-copilot",
+      "onboarding": "rig-formbricks-copilot",
+      "adoption": "rig-formbricks-copilot",
+      "expansion": "rig-formbricks-copilot"
+    },
+    "deployId": "deploy_v1_2026-07-18T00-29",
+    "triggeredBy": "urZYaISXD2Pcx2jCgTE57vyYCQu2",
+    "triggeredAt": "2026-07-18T00:29:54.579Z"
+  }
+}
