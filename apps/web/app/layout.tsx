@@ -9,6 +9,7 @@ import {
   SENTRY_ENVIRONMENT,
   SENTRY_RELEASE,
 } from "@/lib/constants";
+import { HolostaffProvider } from "@/app/holostaff/HolostaffProvider";
 import { I18nProvider } from "@/lingodotdev/client";
 import { getLocale } from "@/lingodotdev/language";
 import "../modules/ui/globals.css";
@@ -34,6 +35,7 @@ const RootLayout = async ({ children }: { children: React.ReactNode }) => {
           sentryEnvironment={SENTRY_ENVIRONMENT}
           isEnabled={IS_PRODUCTION}>
           <I18nProvider language={locale} defaultLanguage={DEFAULT_LOCALE}>
+            <HolostaffProvider />
             {children}
           </I18nProvider>
         </SentryProvider>
