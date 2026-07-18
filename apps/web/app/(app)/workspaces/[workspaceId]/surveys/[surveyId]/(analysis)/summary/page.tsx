@@ -22,6 +22,7 @@ import { IdBadge } from "@/modules/ui/components/id-badge";
 import { PageContentWrapper } from "@/modules/ui/components/page-content-wrapper";
 import { PageHeader } from "@/modules/ui/components/page-header";
 import { getWorkspaceAuth } from "@/modules/workspaces/lib/utils";
+import { HolostaffStageMark } from '../../../../../../../holostaff-stage-mark'
 
 const SurveyPage = async (
   props: Readonly<{ params: Promise<{ workspaceId: string; surveyId: string }> }>
@@ -103,4 +104,16 @@ const SurveyPage = async (
   );
 };
 
-export default SurveyPage;
+// ── Holostaff instrumentation ──────────────────────────────────
+// Added by the Holostaff deploy agent (Formbricks · deploy v1).
+// Marks the visitor entering the "adoption" journey stage when
+// this entry page mounts — powers stage-aware copilot monitoring.
+// Safe to relocate; keep one call per entry page. https://docs.holostaff.ai
+export default function HolostaffPage(props: any) {
+  return (
+    <>
+      <HolostaffStageMark stage="adoption" /> {/* entry page for "Analyze Survey Results" */}
+      <SurveyPage {...props} />
+    </>
+  )
+}
